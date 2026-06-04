@@ -1,0 +1,90 @@
+def print_name_and_number(data):
+    last_name = data['name'].split()[-1]
+
+    print(f"My name is {data['name']}, but you can call me Mr. {last_name}.")
+    print(f"My student ID is {data['student_ID']}.")
+
+
+def print_pizza_toppings(data):
+    print("\nMy favourite pizza toppings are:")
+
+    for topping in data['pizza_toppings']:
+        print(f"- {topping}")
+
+
+def add_pizza_toppings(data, toppings):
+
+    for topping in toppings:
+        data['pizza_toppings'].append(topping)
+
+    data['pizza_toppings'].sort()
+
+    for i in range(len(data['pizza_toppings'])):
+        data['pizza_toppings'][i] = data['pizza_toppings'][i].lower()
+
+
+def add_movie(data, title, genre):
+    data['movies'].append({
+        'title': title,
+        'genre': genre
+    })
+
+
+def print_movie_genres(data):
+    genres = []
+
+    for movie in data['movies']:
+        genres.append(movie['genre'])
+
+    print(f"\nI like to watch {', '.join(genres)} movies.")
+
+
+def print_movie_titles(movies):
+    titles = []
+
+    for movie in movies:
+        titles.append(movie['title'].title())
+
+    print(f"\nSome of my favourite movies are {', '.join(titles)}!")
+
+
+def main():
+    data = {
+        'name': 'Nick Hood',
+        'student_ID': 10371281,
+
+        'pizza_toppings': [
+            'PEPPERONI',
+            'CHEESE',
+            'BACON'
+        ],
+
+        'movies': [
+            {
+                'title': 'the matrix',
+                'genre': 'action'
+            },
+
+            {
+                'title': 'interstellar',
+                'genre': 'sci-fi'
+            }
+        ]
+    }
+
+    print_name_and_number(data)
+
+    print_pizza_toppings(data)
+
+    add_pizza_toppings(data, ('MUSHROOMS', 'ONIONS'))
+
+    print_pizza_toppings(data)
+
+    add_movie(data, 'inception', 'sci-fi')
+
+    print_movie_genres(data)
+
+    print_movie_titles(data['movies'])
+
+
+main()
